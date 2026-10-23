@@ -49,6 +49,11 @@ export const getDisplayedDuration = (session: Pick<TimeSession, 'durationSeconds
   return session.durationSeconds + Math.max(0, Math.floor((Date.parse(now) - Date.parse(currentSegment.startedAt)) / 1000));
 };
 
+export const getIssueDisplayedDuration = (session: Pick<TimeSession, 'issueId' | 'durationSeconds' | 'status' | 'segments'>, issueId: number, now: string): number => {
+  if (session.issueId !== issueId) return 0;
+  return getDisplayedDuration(session, now);
+};
+
 const updateSession = (state: TimerState, session: TimeSession): TimerState => ({
   activeSession: session,
   sessions: state.sessions.map((item) => (item.id === session.id ? session : item)),

@@ -6,6 +6,7 @@ import type { RuntimeMessage, RuntimeResponse } from '@/services/messaging/proto
 import type { TimeSession } from '@/domain/types';
 import { defineBackground } from '#imports';
 import { assertRedmineHostPermission, isInsecureRedmineUrl, normalizeRedmineUrl, redmineOriginPattern } from '@/services/permissions/host';
+import { getSuggestedEntryHours } from '@/domain/preferences';
 
 const repository = new StateRepository();
 const CONTENT_SCRIPT_ID = 'geja-redmine-issue-timer';
@@ -42,7 +43,8 @@ async function handleMessage(message: RuntimeMessage): Promise<RuntimeResponse> 
   try {
     if (message.type === 'GET_STATE') return { ok: true, state: publicState(await repository.load()) };
     if (message.type === 'OPEN_WINDOW') {
-      await chrome.windows.create({ url: chrome.runtime.getURL('popup.html'), type: 'popup', width: 430, height: 680 });
+      const query = message.tab ? `?tab=${message.tab}` : '';
+      await chrome.windows.create({ url: `${chrome.runtime.getURL('popup.html')}${query}`, type: 'popup', width: 430, height: 680 });
       return { ok: true, state: publicState(await repository.load()) };
     }
     if (message.type === 'SAVE_CONFIG') {
@@ -85,6 +87,15 @@ async function handleMessage(message: RuntimeMessage): Promise<RuntimeResponse> 
     const timerState = { ...createTimerState(), ...activeState(scoped) };
     const now = new Date().toISOString();
     let nextTimer = timerState;
+    if (message.type === 'LAUNCH_CURRENT_ISSUE') {
+      const active = timerState.activeSession;
+      const shouldStop = active && active.issueId === message.issueId && (active.status === 'running' || active.status === 'paused');
+      if (shouldStop) nextTimer = stopSession(timerState, now);
+      const state = await repository.update((value) => ({ ...value, sessions: value.sessions.filter((session) => session.accountId !== accountId).concat(nextTimer.sessions) }));
+      const tab = shouldStop ? 'hours' : 'timer';
+      await chrome.windows.create({ url: `${chrome.runtime.getURL('popup.html')}?tab=${tab}`, type: 'popup', width: 430, height: 680 });
+      return { ok: true, state: publicState(state), session: nextTimer.sessions.find((session) => session.id === active?.id) };
+    }
     if (message.type === 'START_SESSION') {
       if (timerState.activeSession && current.preferences.autoPause) nextTimer = stopSession(timerState, now);
       nextTimer = startSession(nextTimer, { accountId, issueId: message.issueId, projectId: message.projectId, userId: current.account.user.id, now });
@@ -102,9 +113,14 @@ async function handleMessage(message: RuntimeMessage): Promise<RuntimeResponse> 
       const client = new RedmineClient(current.account.redmineUrl, current.account.apiKey);
       const session = scoped.find((item) => item.id === message.sessionId);
       if (!session || session.accountId !== accountId || session.status !== 'pending') throw new Error('Sessão pendente inválida para esta conta.');
+      const requestedHours = Number.isFinite(message.hours) && message.hours > 0
+        ? message.hours
+        : session.durationSeconds / 3600;
+      const submittedHours = requestedHours > 0 ? Math.max(0.01, Math.round(requestedHours * 100) / 100) : getSuggestedEntryHours(session.durationSeconds, current.preferences.roundToInterval);
+      if (submittedHours <= 0) throw new Error('A sessão não possui duração suficiente para lançamento.');
       try {
-        const result = await client.createTimeEntry({ issue_id: session.issueId, hours: message.hours, activity_id: message.activityId, comments: message.comments, spent_on: message.spentOn });
-        const state = await repository.update((value) => ({ ...value, sessions: value.sessions.map((item) => item.id === session.id ? { ...item, status: 'submitted', timeEntryId: result.time_entry.id, submittedAt: new Date().toISOString(), durationSeconds: Math.round(message.hours * 3600), description: message.comments, activityId: message.activityId, spentOn: message.spentOn, updatedAt: new Date().toISOString() } : item) }));
+        const result = await client.createTimeEntry({ issue_id: session.issueId, hours: submittedHours, activity_id: message.activityId, comments: message.comments, spent_on: message.spentOn });
+        const state = await repository.update((value) => ({ ...value, sessions: value.sessions.map((item) => item.id === session.id ? { ...item, status: 'submitted', timeEntryId: result.time_entry.id, submittedAt: new Date().toISOString(), description: message.comments, activityId: message.activityId, spentOn: message.spentOn, updatedAt: new Date().toISOString() } : item) }));
         return { ok: true, state: publicState(state), session: state.sessions.find((item) => item.id === session.id) };
       } catch (error) {
         if (error instanceof Error && (error as { status?: number }).status === 0) {

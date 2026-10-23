@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createTimerState, startSession, stopSession, pauseSession, resumeSession, getSessionDuration, getDisplayedDuration } from '@/domain/timer';
+import { createTimerState, startSession, stopSession, pauseSession, resumeSession, getSessionDuration, getDisplayedDuration, getIssueDisplayedDuration } from '@/domain/timer';
 
 describe('sessões do timer', () => {
   it('iniciar depois de parar cria outra sessão zerada e preserva a primeira', () => {
@@ -35,5 +35,11 @@ describe('sessões do timer', () => {
     const running = startSession(createTimerState(), { issueId: 1, projectId: 2, userId: 3, accountId: 'a', now: '2026-10-22T08:00:00.000Z' });
     expect(getDisplayedDuration(running.activeSession!, '2026-10-22T08:01:05.000Z')).toBe(65);
     expect(running.activeSession?.durationSeconds).toBe(0);
+  });
+
+  it('não exibe a duração da sessão ativa em outro chamado', () => {
+    const running = startSession(createTimerState(), { issueId: 101758, projectId: 7, userId: 3, accountId: 'a', now: '2026-10-22T08:00:00.000Z' });
+    expect(getIssueDisplayedDuration(running.activeSession!, 101758, '2026-10-22T08:15:32.000Z')).toBe(932);
+    expect(getIssueDisplayedDuration(running.activeSession!, 202020, '2026-10-22T08:15:32.000Z')).toBe(0);
   });
 });

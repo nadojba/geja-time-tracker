@@ -4,7 +4,8 @@ import type { AccountConfig, ExtensionState } from '@/services/storage/repositor
 
 export type RuntimeMessage =
   | { type: 'GET_STATE' }
-  | { type: 'OPEN_WINDOW' }
+  | { type: 'OPEN_WINDOW'; tab?: 'timer' | 'hours' }
+  | { type: 'LAUNCH_CURRENT_ISSUE'; issueId: number }
   | { type: 'SAVE_CONFIG'; url: string; apiKey: string }
   | { type: 'GET_ISSUES'; search?: string }
   | { type: 'GET_ACTIVITIES' }

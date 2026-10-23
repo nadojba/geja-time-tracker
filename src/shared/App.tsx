@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import {
   defaultPreferences,
-  roundDurationSeconds,
+  getSuggestedEntryHours,
   type Preferences,
 } from '@/domain/preferences';
 import type { RedmineIssue, RedmineActivity } from '@/services/redmine/client';
@@ -33,6 +33,10 @@ import {
 } from '@/services/permissions/host';
 
 type Tab = 'timer' | 'issues' | 'hours' | 'settings';
+const initialTab = (): Tab => {
+  const requested = new URLSearchParams(location.search).get('tab');
+  return requested === 'hours' || requested === 'issues' || requested === 'settings' ? requested : 'timer';
+};
 const send = (message: RuntimeMessage) =>
   new Promise<RuntimeResponse>((resolve) =>
     chrome.runtime.sendMessage(message, resolve),
@@ -51,7 +55,7 @@ const formatSeconds = (seconds: number) => {
 };
 
 export function App() {
-  const [tab, setTab] = useState<Tab>('timer');
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [state, setState] = useState<ExtensionState | null>(null);
   const [issues, setIssues] = useState<RedmineIssue[]>([]);
   const [activities, setActivities] = useState<RedmineActivity[]>([]);
@@ -475,10 +479,12 @@ function PendingSession({
   preferences: Preferences;
   onAction: (message: RuntimeMessage) => void;
 }) {
-  const suggestedHours =
-    roundDurationSeconds(session.durationSeconds, preferences.roundToInterval) /
-    3600;
-  const [hours, setHours] = useState(suggestedHours.toFixed(2));
+  const suggestedHours = getSuggestedEntryHours(
+    session.durationSeconds,
+    preferences.roundToInterval,
+  );
+  const suggestedHoursLabel = suggestedHours.toFixed(2);
+  const [hours, setHours] = useState(suggestedHoursLabel);
   const [comments, setComments] = useState(session.description);
   const [activityId, setActivityId] = useState(
     activities[0]?.id?.toString() ?? '',
@@ -510,8 +516,8 @@ function PendingSession({
           </select>
         </div>
         <div className="muted">
-          Sugestão de lançamento: {suggestedHours.toFixed(2)} h. A duração real
-          da sessão é {formatSeconds(session.durationSeconds)}.
+            Sugestão de lançamento: {suggestedHoursLabel} h. A duração real da
+            sessão é {formatSeconds(session.durationSeconds)}.
         </div>
         <textarea
           aria-label="Descrição"

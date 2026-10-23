@@ -43,3 +43,14 @@ export function roundDurationSeconds(seconds: number, config: Preferences['round
   const roundedUnits = config.mode === 'down' ? Math.floor(units) : config.mode === 'up' ? Math.ceil(units) : Math.round(units);
   return roundedUnits * intervalSeconds;
 }
+
+export function getSuggestedDurationSeconds(seconds: number, config: Preferences['roundToInterval']): number {
+  const rounded = roundDurationSeconds(seconds, config);
+  return seconds > 0 && rounded <= 0 ? seconds : rounded;
+}
+
+export function getSuggestedEntryHours(seconds: number, config: Preferences['roundToInterval']): number {
+  const suggestedSeconds = getSuggestedDurationSeconds(seconds, config);
+  if (suggestedSeconds <= 0) return 0;
+  return Math.max(0.01, Math.round((suggestedSeconds / 3600) * 100) / 100);
+}
