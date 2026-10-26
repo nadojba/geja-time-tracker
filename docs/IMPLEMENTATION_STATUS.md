@@ -250,8 +250,8 @@ Atualizado em 23/10/2026.
 - Concluído: layout responsivo, menu mobile, foco visível, `prefers-reduced-motion` e ausência de rolagem horizontal em telas estreitas.
 - Concluído: logo local reutilizada em `website/assets/redmine-logo.svg`; nenhuma API Key é incluída e o único script remoto é o Google Analytics explicitamente solicitado para a landing pública.
 - Concluído: workflow `.github/workflows/pages.yml` publica somente `website/` como artefato do GitHub Pages, sem expor o restante do repositório no site.
-- Concluído: Google Analytics 4 adicionado somente à landing pública com o ID `G-QQP34EH110`; a extensão continua sem telemetria.
-- Concluído: consentimento explícito implementado para a landing, com carregamento único da tag, consent mode padrão negado, `page_view` sem duplicidade e eventos `click_install_extension`, `click_github`, `click_documentation` e `click_contact`.
+- Concluído: Google Analytics 4 adicionado somente à landing pública com o ID `G-QQP34EH110`; a extensão não possui telemetria externa.
+- Concluído: consentimento explícito implementado para a landing, com carregamento único da tag, consent mode padrão negado, `page_view` sem duplicidade e eventos `install_cta_click`, `github_click`, `documentation_click` e `contact_click`.
 - Concluído: metatag do Google Search Console adicionada ao `<head>` da landing para verificar `https://nadojba.github.io/geja-time-tracker/`.
 - Concluído: arquivo `website/googled298e025a6729a6a.html` adicionado para o método alternativo de verificação por arquivo HTML.
 - Concluído: landing refinada com visual mais simples, removendo glows, chips flutuantes e rotação decorativa; cards, espaçamento, contraste e leitura mobile foram ajustados.
@@ -262,3 +262,12 @@ Atualizado em 23/10/2026.
 - Concluído: versão da extensão atualizada para `0.1.5` no package, lockfile, WXT e manifesto gerado.
 - Concluído: modal **Novidades** atualizada com changelog bilíngue da nova versão.
 - Concluído: changelog da landing atualizado para refletir a publicação e a documentação revisadas.
+
+### Analytics e telemetria privada — 26/10/2026
+
+- Concluído: eventos da landing alinhados aos nomes `install_cta_click`, `github_click`, `documentation_click` e `contact_click`, sem evento fictício de instalação concluída.
+- Concluído: `docs/analytics.md` documenta consentimento, DebugView, métricas da Chrome Web Store, limites de correlação e configurações externas.
+- Concluído: GA4 permanece restrito à landing, carregado uma vez e somente após consentimento explícito.
+- Concluído: extensão recebeu telemetria local agregada opcional, desativada por padrão, com controle visível em Configurações; nenhum endpoint externo ou nova permissão foi adicionado.
+- Concluído: contadores locais não armazenam dados pessoais, URLs, IDs, títulos, comentários, horários ou durações e falhas de telemetria não afetam o timer.
+- Pendente: validação de eventos no DebugView e publicação da landing dependem do deploy no GitHub Pages e acesso à propriedade GA4 real. Métricas de instalação/desinstalação dependem do Developer Dashboard da Chrome Web Store.

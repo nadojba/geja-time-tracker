@@ -10,3 +10,9 @@ Antes de cada chamada autenticada, o service worker verifica `chrome.permissions
 
 Sessões carregam `accountId`, derivado da URL normalizada e do ID do usuário autenticado. Trocar conta preserva o histórico, mas o worker rejeita lançamentos cujo `accountId` não seja o da conta atual. Um POST com resposta desconhecida não é repetido automaticamente: a sessão é marcada `reconciliation_required` para revisão do usuário.
 
+## Telemetria opcional
+
+A extensão não carrega a tag do Google Analytics e não transmite eventos para um endpoint externo. Em Configurações, o usuário pode ativar explicitamente métricas locais agregadas; a opção vem desativada por padrão. Nesse modo, o service worker guarda somente contadores por tipo de evento (`extension_opened`, conexão, início/parada de timer, lançamento confirmado e falha genérica de API), sem timestamps, duração, IDs, títulos, projetos, comentários, nomes, e-mails, URLs internas, API Keys ou tokens.
+
+O registro local é best-effort: falhas de armazenamento são ignoradas e nunca interrompem timers ou lançamentos. Desativar a opção impede novos incrementos; não existe sincronização pelo Chrome Sync nem envio posterior. Qualquer telemetria externa futura exige avaliação independente de LGPD, política da Chrome Web Store, consentimento e infraestrutura autenticada antes de ser habilitada.
+
