@@ -255,3 +255,9 @@ Atualizado em 23/10/2026.
 - Concluído: arquivo `website/googled298e025a6729a6a.html` adicionado para o método alternativo de verificação por arquivo HTML.
 - Concluído: landing refinada com visual mais simples, removendo glows, chips flutuantes e rotação decorativa; cards, espaçamento, contraste e leitura mobile foram ajustados.
 - Validação: referências de tradução, assets e links verificadas; JavaScript validado com `node --check`; gates da extensão mantidos.
+
+### Release 0.1.5 — 26/10/2026
+
+- Concluído: versão da extensão atualizada para `0.1.5` no package, lockfile, WXT e manifesto gerado.
+- Concluído: modal **Novidades** atualizada com changelog bilíngue da nova versão.
+- Concluído: changelog da landing atualizado para refletir a publicação e a documentação revisadas.

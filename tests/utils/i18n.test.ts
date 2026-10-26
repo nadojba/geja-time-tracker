@@ -18,7 +18,7 @@ describe('i18n', () => {
   });
 
   it('mantém as novidades versionadas nos dois idiomas', () => {
-    expect(changelog[0].version).toBe('0.1.4');
+    expect(changelog[0].version).toBe('0.1.5');
     expect(changelog[0].changes['pt-BR'].length).toBeGreaterThan(0);
     expect(changelog[0].changes.en.length).toBeGreaterThan(0);
   });

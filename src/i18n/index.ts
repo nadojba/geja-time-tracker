@@ -569,6 +569,22 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '0.1.5',
+    date: '2026-10-26',
+    changes: {
+      'pt-BR': [
+        'Nova página pública do Geja Time Tracker com instalação, recursos e links oficiais.',
+        'Configurações de idioma e documentação de publicação revisadas.',
+        'Preparação do pacote para instalação e atualização pela Chrome Web Store.',
+      ],
+      en: [
+        'New Geja Time Tracker public page with installation, features and official links.',
+        'Language settings and publishing documentation reviewed.',
+        'Package prepared for Chrome Web Store installation and updates.',
+      ],
+    },
+  },
+  {
     version: '0.1.4',
     date: '2026-10-26',
     changes: {
