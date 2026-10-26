@@ -249,4 +249,5 @@ Atualizado em 23/10/2026.
 - Concluído: seletor Português (Brasil)/English com tradução de todas as mensagens da página e persistência no `localStorage`.
 - Concluído: layout responsivo, menu mobile, foco visível, `prefers-reduced-motion` e ausência de rolagem horizontal em telas estreitas.
 - Concluído: logo local reutilizada em `website/assets/redmine-logo.svg`; nenhuma API Key, telemetria ou script de terceiro foi incluído.
+- Concluído: workflow `.github/workflows/pages.yml` publica somente `website/` como artefato do GitHub Pages, sem expor o restante do repositório no site.
 - Validação: referências de tradução, assets e links verificadas; JavaScript validado com `node --check`; gates da extensão mantidos.
