@@ -35,3 +35,5 @@ A página usa somente assets relativos, portanto funciona em URLs com subcaminho
 - Seletor Português (Brasil)/English persistido no `localStorage`.
 
 A landing usa o Google Analytics 4 com o ID `G-8QSG7CH74K` para medir o uso da página pública. Ela não envia API Keys nem dados do Redmine; a extensão Chrome continua sem telemetria.
+
+O arquivo `website/index.html` também contém a metatag de verificação do Google Search Console. Ela deve permanecer publicada para que a propriedade continue verificada.

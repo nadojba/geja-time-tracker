@@ -251,5 +251,6 @@ Atualizado em 23/10/2026.
 - Concluído: logo local reutilizada em `website/assets/redmine-logo.svg`; nenhuma API Key é incluída e o único script remoto é o Google Analytics explicitamente solicitado para a landing pública.
 - Concluído: workflow `.github/workflows/pages.yml` publica somente `website/` como artefato do GitHub Pages, sem expor o restante do repositório no site.
 - Concluído: Google Analytics 4 adicionado somente à landing pública com o ID `G-8QSG7CH74K`; a extensão continua sem telemetria.
+- Concluído: metatag do Google Search Console adicionada ao `<head>` da landing para verificar `https://nadojba.github.io/geja-time-tracker/`.
 - Concluído: landing refinada com visual mais simples, removendo glows, chips flutuantes e rotação decorativa; cards, espaçamento, contraste e leitura mobile foram ajustados.
 - Validação: referências de tradução, assets e links verificadas; JavaScript validado com `node --check`; gates da extensão mantidos.
