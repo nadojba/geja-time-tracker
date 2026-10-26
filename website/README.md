@@ -34,4 +34,4 @@ A página usa somente assets relativos, portanto funciona em URLs com subcaminho
 - Links da Chrome Web Store, GitHub, releases e issues.
 - Seletor Português (Brasil)/English persistido no `localStorage`.
 
-A landing não coleta métricas e não envia API Keys ou dados do Redmine.
+A landing usa o Google Analytics 4 com o ID `G-8QSG7CH74K` para medir o uso da página pública. Ela não envia API Keys nem dados do Redmine; a extensão Chrome continua sem telemetria.

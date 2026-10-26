@@ -244,10 +244,11 @@ Atualizado em 23/10/2026.
 
 ### Landing page pública — 26/10/2026
 
-- Concluído: landing page estática em `website/`, sem dependências ou recursos remotos, adequada para GitHub Pages em subcaminho.
+- Concluído: landing page estática em `website/`, sem dependências de build e adequada para GitHub Pages em subcaminho.
 - Concluído: hero, demonstração visual do timer, recursos, fluxo de uso, segurança, instalação, changelog e links públicos da Chrome Web Store/GitHub.
 - Concluído: seletor Português (Brasil)/English com tradução de todas as mensagens da página e persistência no `localStorage`.
 - Concluído: layout responsivo, menu mobile, foco visível, `prefers-reduced-motion` e ausência de rolagem horizontal em telas estreitas.
-- Concluído: logo local reutilizada em `website/assets/redmine-logo.svg`; nenhuma API Key, telemetria ou script de terceiro foi incluído.
+- Concluído: logo local reutilizada em `website/assets/redmine-logo.svg`; nenhuma API Key é incluída e o único script remoto é o Google Analytics explicitamente solicitado para a landing pública.
 - Concluído: workflow `.github/workflows/pages.yml` publica somente `website/` como artefato do GitHub Pages, sem expor o restante do repositório no site.
+- Concluído: Google Analytics 4 adicionado somente à landing pública com o ID `G-8QSG7CH74K`; a extensão continua sem telemetria.
 - Validação: referências de tradução, assets e links verificadas; JavaScript validado com `node --check`; gates da extensão mantidos.

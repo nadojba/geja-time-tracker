@@ -47,7 +47,7 @@ O build gera `dist/`, que pode ser carregado em `chrome://extensions` com **Modo
 - Requisições autenticadas são feitas exclusivamente pelo service worker.
 - O acesso ao domínio Redmine é solicitado sob demanda.
 - Timeouts de POST não são reenviados automaticamente; sessões ficam disponíveis para reconciliação.
-- A extensão não possui backend próprio nem telemetria.
+- A extensão não possui backend próprio nem telemetria; o Google Analytics está restrito à landing pública.
 
 Consulte [`docs/security.md`](docs/security.md) para os detalhes técnicos.
 
