@@ -14,7 +14,7 @@
       howEyebrow: 'Feito para não atrapalhar', howTitle: 'Seu trabalho continua.<br><span>O tempo fica registrado.</span>', howDescription: 'O Geja acompanha a forma como você trabalha, sem impor um processo novo e sem alterar seus chamados.', stepOneTitle: 'Escolha o chamado', stepOneDescription: 'Encontre uma tarefa atribuída a você ou abra um chamado diretamente no Redmine.', stepTwoTitle: 'Inicie uma sessão', stepTwoDescription: 'O contador começa em zero e o estado se mantém sincronizado entre abas e janelas.', stepThreeTitle: 'Revise e lance', stepThreeDescription: 'Ao parar, a sessão fica pendente para você revisar e enviar quando estiver pronto.', quote: 'O tempo local não é misturado com o que já foi confirmado no Redmine. Você sempre sabe o que está pendente.', quoteCaption: 'Princípio do Geja Time Tracker',
       securityEyebrow: 'Privacidade por padrão', securityTitle: 'Seu tempo é seu.', securityDescription: 'A extensão conversa diretamente com a instância Redmine configurada. Não existe backend próprio, telemetria ou serviço intermediário recebendo sua API Key.', readSecurity: 'Leia a política técnica', securityLocalTitle: 'Credenciais locais', securityLocalDescription: 'A API Key fica somente no armazenamento protegido da extensão.', securityWorkerTitle: 'Chamadas centralizadas', securityWorkerDescription: 'O service worker é o único contexto que faz requests autenticados.', securityPermissionTitle: 'Permissão sob demanda', securityPermissionDescription: 'O acesso é solicitado somente para o domínio Redmine escolhido.',
       installTitle: 'Comece a registrar<br><span>com mais confiança.</span>', installDescription: 'Instale a extensão, conecte sua instância Redmine e tenha seus chamados sempre à mão.', installNow: 'Instalar agora', installStepOne: 'Adicione ao Chrome', installStepOneSub: 'A instalação leva poucos segundos.', installStepTwo: 'Configure o Redmine', installStepTwoSub: 'Informe URL e API Key da sua conta.', installStepThree: 'Comece a trabalhar', installStepThreeSub: 'Escolha um chamado e inicie sua primeira sessão.',
-      changelogEyebrow: 'Evolução contínua', changelogTitle: 'Feito para melhorar<br><span>com você.</span>', allReleases: 'Ver releases', releaseOneTitle: 'Mais clareza para começar', releaseOneDescription: 'Landing pública, instalação guiada, links oficiais e documentação revisada.', releaseTwoTitle: 'Mais controle no seu fluxo', releaseTwoDescription: 'Cadastro de chamados, seções por projeto e descrições formatadas do Redmine.', footerDescription: 'Uma extensão independente para trabalhar melhor com o Redmine.', chromeStore: 'Chrome Web Store', reportIssue: 'Reportar problema', notOfficial: 'Não é um produto oficial do Redmine.'
+      changelogEyebrow: 'Evolução contínua', changelogTitle: 'Feito para melhorar<br><span>com você.</span>', allReleases: 'Ver releases', releaseOneTitle: 'Mais clareza para começar', releaseOneDescription: 'Landing pública, instalação guiada, links oficiais e documentação revisada.', releaseTwoTitle: 'Mais controle no seu fluxo', releaseTwoDescription: 'Cadastro de chamados, seções por projeto e descrições formatadas do Redmine.', footerDescription: 'Uma extensão independente para trabalhar melhor com o Redmine.', chromeStore: 'Chrome Web Store', reportIssue: 'Reportar problema', notOfficial: 'Não é um produto oficial do Redmine.', analyticsConsentTitle: 'Privacidade e métricas', analyticsConsentDescription: 'Usamos métricas anônimas para entender o uso desta página. A extensão e os dados do Redmine não são monitorados.', analyticsReject: 'Recusar', analyticsAccept: 'Aceitar métricas'
     },
     en: {
       navFeatures: 'Features', navHow: 'How it works', navSecurity: 'Security', navInstall: 'Installation',
@@ -28,7 +28,7 @@
       howEyebrow: 'Designed to stay out of the way', howTitle: 'Your work continues.<br><span>Your time is recorded.</span>', howDescription: 'Geja fits the way you already work, without imposing a new process or changing your issues.', stepOneTitle: 'Choose an issue', stepOneDescription: 'Find an issue assigned to you or open one directly in Redmine.', stepTwoTitle: 'Start a session', stepTwoDescription: 'The counter starts at zero and stays synchronized across tabs and windows.', stepThreeTitle: 'Review and log', stepThreeDescription: 'When you stop, the session stays pending for review before you send it.', quote: 'Local time is never mixed with what has already been confirmed in Redmine. You always know what is pending.', quoteCaption: 'Geja Time Tracker principle',
       securityEyebrow: 'Privacy by default', securityTitle: 'Your time is yours.', securityDescription: 'The extension talks directly to your configured Redmine instance. There is no custom backend, telemetry or intermediary service receiving your API Key.', readSecurity: 'Read the technical policy', securityLocalTitle: 'Local credentials', securityLocalDescription: 'Your API Key stays in the extension’s protected storage.', securityWorkerTitle: 'Centralized requests', securityWorkerDescription: 'The service worker is the only context that makes authenticated requests.', securityPermissionTitle: 'Permission on demand', securityPermissionDescription: 'Access is requested only for the Redmine domain you choose.',
       installTitle: 'Start tracking<br><span>with confidence.</span>', installDescription: 'Install the extension, connect your Redmine instance and keep your issues within reach.', installNow: 'Install now', installStepOne: 'Add to Chrome', installStepOneSub: 'Installation takes a few seconds.', installStepTwo: 'Configure Redmine', installStepTwoSub: 'Enter your account URL and API Key.', installStepThree: 'Start working', installStepThreeSub: 'Choose an issue and start your first session.',
-      changelogEyebrow: 'Always evolving', changelogTitle: 'Built to get better<br><span>with you.</span>', allReleases: 'View releases', releaseOneTitle: 'A clearer way to start', releaseOneDescription: 'Public landing page, guided installation, official links and reviewed documentation.', releaseTwoTitle: 'More control in your flow', releaseTwoDescription: 'Issue creation, project sections and formatted Redmine descriptions.', footerDescription: 'An independent extension for a better Redmine workflow.', chromeStore: 'Chrome Web Store', reportIssue: 'Report an issue', notOfficial: 'Not an official Redmine product.'
+      changelogEyebrow: 'Always evolving', changelogTitle: 'Built to get better<br><span>with you.</span>', allReleases: 'View releases', releaseOneTitle: 'A clearer way to start', releaseOneDescription: 'Public landing page, guided installation, official links and reviewed documentation.', releaseTwoTitle: 'More control in your flow', releaseTwoDescription: 'Issue creation, project sections and formatted Redmine descriptions.', footerDescription: 'An independent extension for a better Redmine workflow.', chromeStore: 'Chrome Web Store', reportIssue: 'Report an issue', notOfficial: 'Not an official Redmine product.', analyticsConsentTitle: 'Privacy and metrics', analyticsConsentDescription: 'We use anonymous metrics to understand how this page is used. The extension and Redmine data are never tracked.', analyticsReject: 'Decline', analyticsAccept: 'Allow metrics'
     }
   };
 
@@ -37,6 +37,71 @@
   var select = document.getElementById('language-select');
   var mobileButton = document.getElementById('mobile-menu-button');
   var mobileMenu = document.getElementById('mobile-menu');
+  var analyticsMeasurementId = 'G-QQP34EH110';
+  var analyticsConsentKey = 'geja-analytics-consent';
+  var analyticsLoaded = false;
+  var lastTrackedPage = '';
+
+  function gtag() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(arguments);
+  }
+
+  function configureDefaultConsent() {
+    window.gtag = gtag;
+    gtag('consent', 'default', {
+      ad_personalization: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500,
+    });
+  }
+
+  function trackPageView() {
+    if (!analyticsLoaded) return;
+    var locationKey = window.location.href;
+    if (locationKey === lastTrackedPage) return;
+    lastTrackedPage = locationKey;
+    gtag('event', 'page_view', {
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.search + window.location.hash,
+      page_title: document.title,
+    });
+  }
+
+  function loadAnalytics() {
+    if (analyticsLoaded || document.getElementById('geja-google-tag')) return;
+    analyticsLoaded = true;
+    var script = document.createElement('script');
+    script.id = 'geja-google-tag';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + analyticsMeasurementId;
+    document.head.appendChild(script);
+    gtag('js', new Date());
+    gtag('config', analyticsMeasurementId, { send_page_view: false });
+    trackPageView();
+  }
+
+  function grantAnalyticsConsent() {
+    try { window.localStorage.setItem(analyticsConsentKey, 'granted'); } catch (error) { /* Consent still applies for this page. */ }
+    gtag('consent', 'update', {
+      ad_personalization: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      analytics_storage: 'granted',
+    });
+    loadAnalytics();
+  }
+
+  function trackEvent(name) {
+    if (!analyticsLoaded) return;
+    gtag('event', name, { page_location: window.location.href });
+  }
+
+  function readAnalyticsConsent() {
+    try { return window.localStorage.getItem(analyticsConsentKey); } catch (error) { return null; }
+  }
 
   function preferredLanguage() {
     try {
@@ -57,7 +122,26 @@
     try { window.localStorage.setItem(storageKey, current); } catch (error) { /* Non-fatal fallback. */ }
   }
 
+  configureDefaultConsent();
   setLanguage(preferredLanguage());
+  var consentBanner = document.getElementById('analytics-consent');
+  var savedConsent = readAnalyticsConsent();
+  if (savedConsent === 'granted') loadAnalytics();
+  else if (!savedConsent && consentBanner) consentBanner.hidden = false;
+  var consentAccept = document.getElementById('analytics-consent-accept');
+  var consentReject = document.getElementById('analytics-consent-reject');
+  if (consentAccept) consentAccept.addEventListener('click', function () {
+    if (consentBanner) consentBanner.hidden = true;
+    grantAnalyticsConsent();
+  });
+  if (consentReject) consentReject.addEventListener('click', function () {
+    try { window.localStorage.setItem(analyticsConsentKey, 'denied'); } catch (error) { /* Non-fatal in private browsing. */ }
+    if (consentBanner) consentBanner.hidden = true;
+  });
+  document.querySelectorAll('[data-analytics-event]').forEach(function (element) {
+    element.addEventListener('click', function () { trackEvent(element.dataset.analyticsEvent); });
+  });
+  window.addEventListener('hashchange', trackPageView);
   if (select) select.addEventListener('change', function (event) { setLanguage(event.target.value); });
   if (mobileButton && mobileMenu) {
     mobileButton.addEventListener('click', function () {
