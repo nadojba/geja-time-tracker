@@ -36,6 +36,8 @@ A página usa somente assets relativos, portanto funciona em URLs com subcaminho
 
 A landing usa o Google Analytics 4 com o ID `G-QQP34EH110` para medir o uso da página pública somente após consentimento explícito. Ela não envia API Keys nem dados do Redmine; a extensão Chrome não possui telemetria externa e suas métricas locais agregadas são opcionais e desativadas por padrão.
 
+O HTML inicial prioriza inglês para indexação internacional e o JavaScript oferece português brasileiro no mesmo endereço. `sitemap.xml` e `robots.txt` ficam nesta pasta e são publicados automaticamente pelo workflow.
+
 O arquivo `website/index.html` também contém a metatag de verificação do Google Search Console. Ela deve permanecer publicada para que a propriedade continue verificada.
 
 O arquivo `googled298e025a6729a6a.html` atende também ao método de verificação por arquivo HTML. Ele precisa continuar na raiz de `website/`.

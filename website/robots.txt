@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nadojba.github.io/geja-time-tracker/sitemap.xml
