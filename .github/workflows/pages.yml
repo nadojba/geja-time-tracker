@@ -35,7 +35,7 @@ jobs:
       - name: Preparar landing page
         uses: actions/upload-pages-artifact@v3
         with:
-          path: website
+          path: ./website
 
       - name: Publicar no GitHub Pages
         id: deployment
