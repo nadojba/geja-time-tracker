@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Geja Time Tracker - Redmine: cronômetros por sessão, lançamentos seguros e produtividade no Redmine." />
+    <meta name="theme-color" content="#f6f8fc" />
+    <title>Geja Time Tracker - Redmine</title>
+    <link rel="icon" href="assets/redmine-logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Geja Time Tracker - Redmine">
+        <span class="brand-mark"><img src="assets/redmine-logo.svg" alt="" /></span>
+        <span>Geja <strong>Time Tracker</strong></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="#recursos" data-i18n="navFeatures">Recursos</a>
+        <a href="#como-funciona" data-i18n="navHow">Como funciona</a>
+        <a href="#seguranca" data-i18n="navSecurity">Segurança</a>
+        <a href="#instalacao" data-i18n="navInstall">Instalação</a>
+      </nav>
+      <div class="header-actions">
+        <label class="language-picker">
+          <span class="sr-only" data-i18n="languageLabel">Idioma</span>
+          <select id="language-select" aria-label="Idioma">
+            <option value="pt-BR">PT-BR</option>
+            <option value="en">EN</option>
+          </select>
+        </label>
+        <a class="button button-small button-dark" href="https://chromewebstore.google.com/detail/geja-time-tracker-redmine/cijcdkdpmnhcbfadlnhkjmbpjknffhkb?authuser=0&hl=pt-BR" target="_blank" rel="noreferrer" data-i18n="installButton">Instalar extensão</a>
+        <button class="mobile-menu-button" id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">☰</button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <a href="#recursos" data-i18n="navFeatures">Recursos</a>
+      <a href="#como-funciona" data-i18n="navHow">Como funciona</a>
+      <a href="#seguranca" data-i18n="navSecurity">Segurança</a>
+      <a href="#instalacao" data-i18n="navInstall">Instalação</a>
+    </div>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="status-dot"></span><span data-i18n="eyebrow">Controle seu tempo com clareza</span></div>
+          <h1 data-i18n="heroTitle">O tempo do seu Redmine,<br /><em>do seu jeito.</em></h1>
+          <p class="hero-description" data-i18n="heroDescription">Cronometre sessões independentes, organize seus chamados e lance horas no Redmine com segurança — direto no navegador.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://chromewebstore.google.com/detail/geja-time-tracker-redmine/cijcdkdpmnhcbfadlnhkjmbpjknffhkb?authuser=0&hl=pt-BR" target="_blank" rel="noreferrer"><span data-i18n="heroCta">Adicionar ao Chrome</span><span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://github.com/nadojba/geja-time-tracker" target="_blank" rel="noreferrer"><span data-i18n="viewGithub">Ver no GitHub</span><span aria-hidden="true">→</span></a>
+          </div>
+          <div class="trust-row"><span data-i18n="noBackend">Sem backend próprio</span><span>•</span><span data-i18n="localStorage">Dados locais e seguros</span><span>•</span><span>Manifest V3</span></div>
+        </div>
+        <div class="hero-product" aria-label="Demonstração visual do timer">
+          <div class="glow glow-one"></div><div class="glow glow-two"></div>
+          <div class="product-window">
+            <div class="window-top"><div class="window-dots"><i></i><i></i><i></i></div><span>Geja Time Tracker</span><span class="window-more">•••</span></div>
+            <div class="product-content">
+              <div class="product-tabs"><span class="active" data-i18n="timerTab">Timer</span><span data-i18n="issuesTab">Chamados</span><span data-i18n="hoursTab">Horas</span><span>⚙</span></div>
+              <div class="timer-card"><div class="timer-label"><span class="live-dot"></span><span data-i18n="activeSession">SESSÃO EM ANDAMENTO</span></div><div class="timer-value">01:24:38</div><div class="issue-line"><span class="issue-badge">#101758</span><span data-i18n="issueTitle">Criar tela de gerenciamento</span></div><div class="project-line">Funoesc Studio</div><div class="timer-controls"><button class="timer-stop" type="button"><span>■</span><span data-i18n="stop">Parar</span></button><button class="timer-pause" type="button"><span>Ⅱ</span><span data-i18n="pause">Pausar</span></button><button class="timer-launch" type="button"><span>↗</span><span data-i18n="launch">Lançar</span></button></div></div>
+              <div class="mini-summary"><div><strong>03:12:45</strong><span data-i18n="todayRegistered">registrado hoje</span></div><div class="summary-divider"></div><div><strong>2</strong><span data-i18n="pendingSessions">sessões pendentes</span></div></div>
+            </div>
+          </div>
+          <div class="floating-chip chip-issue"><span class="chip-icon">✓</span><span><b data-i18n="sessionSaved">Sessão salva</b><small data-i18n="sessionSavedSub">45 min prontos para lançar</small></span></div>
+          <div class="floating-chip chip-sync"><span class="sync-icon">↗</span><span><b data-i18n="synced">Sincronizado</b><small>Redmine API</small></span></div>
+        </div>
+      </section>
+
+      <section class="logo-strip section-shell" aria-label="Tecnologias"><span data-i18n="builtFor">Feito para seu fluxo de trabalho</span><strong>REDMINE</strong><span class="strip-separator">×</span><strong>CHROME</strong><span class="strip-separator">×</span><strong>MANIFEST V3</strong></section>
+
+      <section class="section-shell section" id="recursos">
+        <div class="section-heading"><div><div class="eyebrow eyebrow-muted" data-i18n="featuresEyebrow">Tudo no seu fluxo</div><h2 data-i18n="featuresTitle">Menos atrito.<br /><span>Mais tempo bem lançado.</span></h2></div><p data-i18n="featuresDescription">Uma extensão compacta para transformar o acompanhamento de horas em uma parte natural do seu dia.</p></div>
+        <div class="feature-grid">
+          <article class="feature-card feature-card-large accent-blue"><div class="feature-icon">◷</div><h3 data-i18n="featureTimerTitle">Timer por sessão</h3><p data-i18n="featureTimerDescription">Cada início cria uma sessão nova. Pause, retome ou encerre sem perder o histórico real do trabalho.</p><div class="feature-visual session-visual"><span>08:45</span><i></i><span>+ 01:15</span><b>= 02:00</b></div></article>
+          <article class="feature-card accent-purple"><div class="feature-icon">▦</div><h3 data-i18n="featureIssuesTitle">Chamados organizados</h3><p data-i18n="featureIssuesDescription">Pesquise, filtre e agrupe chamados por projeto, versão, status ou prioridade.</p><div class="issue-stack"><span><i class="priority priority-high"></i>#101758 <small>Funoesc Studio</small></span><span><i class="priority priority-normal"></i>#102922 <small>Aurea</small></span></div></article>
+          <article class="feature-card accent-green"><div class="feature-icon">↗</div><h3 data-i18n="featureLaunchTitle">Lançamento seguro</h3><p data-i18n="featureLaunchDescription">Revise duração, atividade, data e comentário antes de enviar qualquer apontamento.</p><div class="launch-visual"><span class="check">✓</span><span data-i18n="readyToLaunch">Pronto para lançar</span><b>01:30</b></div></article>
+          <article class="feature-card accent-orange"><div class="feature-icon">▤</div><h3 data-i18n="featureReportsTitle">Relatórios claros</h3><p data-i18n="featureReportsDescription">Veja hoje, semana e mês separando horas confirmadas das sessões ainda pendentes.</p><div class="bar-chart"><i style="height: 42%"></i><i style="height: 72%"></i><i style="height: 55%"></i><i style="height: 88%"></i><i style="height: 64%"></i><i style="height: 96%"></i><i style="height: 48%"></i></div></article>
+          <article class="feature-card accent-pink"><div class="feature-icon">⌘</div><h3 data-i18n="featureKanbanTitle">Kanban pessoal</h3><p data-i18n="featureKanbanDescription">Organize seus chamados em colunas locais sem alterar o status original no Redmine.</p><div class="kanban-mini"><span class="kanban-column"><b></b><b></b></span><span class="kanban-column"><b></b></span><span class="kanban-column"><b></b><b></b></span></div></article>
+          <article class="feature-card accent-slate"><div class="feature-icon">◉</div><h3 data-i18n="featureWidgetTitle">Sempre por perto</h3><p data-i18n="featureWidgetDescription">Use o popup, Side Panel, janela auxiliar ou widget direto na página do chamado.</p><div class="widget-visual"><span class="live-dot"></span><strong>00:24:18</strong><button type="button">■</button></div></article>
+        </div>
+      </section>
+
+      <section class="dark-section section" id="como-funciona">
+        <div class="section-shell"><div class="section-heading light-heading"><div><div class="eyebrow" data-i18n="howEyebrow">Feito para não atrapalhar</div><h2 data-i18n="howTitle">Seu trabalho continua.<br /><span>O tempo fica registrado.</span></h2></div><p data-i18n="howDescription">O Geja acompanha a forma como você trabalha, sem impor um processo novo e sem alterar seus chamados.</p></div>
+          <div class="steps-grid"><div class="step"><span class="step-number">01</span><div class="step-line"></div><h3 data-i18n="stepOneTitle">Escolha o chamado</h3><p data-i18n="stepOneDescription">Encontre uma tarefa atribuída a você ou abra um chamado diretamente no Redmine.</p></div><div class="step"><span class="step-number">02</span><div class="step-line"></div><h3 data-i18n="stepTwoTitle">Inicie uma sessão</h3><p data-i18n="stepTwoDescription">O contador começa em zero e o estado se mantém sincronizado entre abas e janelas.</p></div><div class="step"><span class="step-number">03</span><div class="step-line"></div><h3 data-i18n="stepThreeTitle">Revise e lance</h3><p data-i18n="stepThreeDescription">Ao parar, a sessão fica pendente para você revisar e enviar quando estiver pronto.</p></div></div>
+          <div class="quote-card"><span class="quote-mark">“</span><p data-i18n="quote">O tempo local não é misturado com o que já foi confirmado no Redmine. Você sempre sabe o que está pendente.</p><span class="quote-caption" data-i18n="quoteCaption">Princípio do Geja Time Tracker</span></div>
+        </div>
+      </section>
+
+      <section class="section-shell section security-section" id="seguranca"><div class="security-copy"><div class="eyebrow eyebrow-muted" data-i18n="securityEyebrow">Privacidade por padrão</div><h2 data-i18n="securityTitle">Seu tempo é seu.</h2><p data-i18n="securityDescription">A extensão conversa diretamente com a instância Redmine configurada. Não existe backend próprio, telemetria ou serviço intermediário recebendo sua API Key.</p><a class="text-link" href="https://github.com/nadojba/geja-time-tracker/blob/main/docs/security.md" target="_blank" rel="noreferrer"><span data-i18n="readSecurity">Leia a política técnica</span> →</a></div><div class="security-list"><div><span class="security-icon">⌁</span><span><strong data-i18n="securityLocalTitle">Credenciais locais</strong><small data-i18n="securityLocalDescription">A API Key fica somente no armazenamento protegido da extensão.</small></span></div><div><span class="security-icon">◎</span><span><strong data-i18n="securityWorkerTitle">Chamadas centralizadas</strong><small data-i18n="securityWorkerDescription">O service worker é o único contexto que faz requests autenticados.</small></span></div><div><span class="security-icon">✓</span><span><strong data-i18n="securityPermissionTitle">Permissão sob demanda</strong><small data-i18n="securityPermissionDescription">O acesso é solicitado somente para o domínio Redmine escolhido.</small></span></div></div></section>
+
+      <section class="install-section section" id="instalacao"><div class="section-shell install-inner"><div><div class="eyebrow">GEJA TIME TRACKER · REDMINE</div><h2 data-i18n="installTitle">Comece a registrar<br /><span>com mais confiança.</span></h2><p data-i18n="installDescription">Instale a extensão, conecte sua instância Redmine e tenha seus chamados sempre à mão.</p><div class="hero-actions"><a class="button button-light" href="https://chromewebstore.google.com/detail/geja-time-tracker-redmine/cijcdkdpmnhcbfadlnhkjmbpjknffhkb?authuser=0&hl=pt-BR" target="_blank" rel="noreferrer"><span data-i18n="installNow">Instalar agora</span> ↗</a><a class="button button-outline-light" href="https://github.com/nadojba/geja-time-tracker" target="_blank" rel="noreferrer">GitHub ↗</a></div></div><div class="install-checklist"><div><span>1</span><p><strong data-i18n="installStepOne">Adicione ao Chrome</strong><small data-i18n="installStepOneSub">A instalação leva poucos segundos.</small></p></div><div><span>2</span><p><strong data-i18n="installStepTwo">Configure o Redmine</strong><small data-i18n="installStepTwoSub">Informe URL e API Key da sua conta.</small></p></div><div><span>3</span><p><strong data-i18n="installStepThree">Comece a trabalhar</strong><small data-i18n="installStepThreeSub">Escolha um chamado e inicie sua primeira sessão.</small></p></div></div></div></section>
+
+      <section class="section-shell section changelog-section"><div class="section-heading"><div><div class="eyebrow eyebrow-muted" data-i18n="changelogEyebrow">Evolução contínua</div><h2 data-i18n="changelogTitle">Feito para melhorar<br /><span>com você.</span></h2></div><a class="text-link" href="https://github.com/nadojba/geja-time-tracker/releases" target="_blank" rel="noreferrer"><span data-i18n="allReleases">Ver releases</span> →</a></div><div class="release-list"><article><span class="release-version">v0.1.4</span><div><h3 data-i18n="releaseOneTitle">Mais controle no seu fluxo</h3><p data-i18n="releaseOneDescription">Relatórios, Kanban pessoal, notificações e traduções em português e inglês.</p></div><time datetime="2026-10-26">26/10/2026</time></article><article><span class="release-version">v0.1.3</span><div><h3 data-i18n="releaseTwoTitle">Uma base mais segura</h3><p data-i18n="releaseTwoDescription">Permissões de host sob demanda, reconciliação de lançamentos e painel lateral.</p></div><time datetime="2026-10-23">23/10/2026</time></article></div></section>
+    </main>
+
+    <footer class="site-footer"><div class="section-shell footer-inner"><a class="brand" href="#top"><span class="brand-mark"><img src="assets/redmine-logo.svg" alt="" /></span><span>Geja <strong>Time Tracker</strong></span></a><p data-i18n="footerDescription">Uma extensão independente para trabalhar melhor com o Redmine.</p><div class="footer-links"><a href="https://github.com/nadojba/geja-time-tracker" target="_blank" rel="noreferrer">GitHub</a><a href="https://chromewebstore.google.com/detail/geja-time-tracker-redmine/cijcdkdpmnhcbfadlnhkjmbpjknffhkb?authuser=0&hl=pt-BR" target="_blank" rel="noreferrer" data-i18n="chromeStore">Chrome Web Store</a><a href="https://github.com/nadojba/geja-time-tracker/issues" target="_blank" rel="noreferrer" data-i18n="reportIssue">Reportar problema</a></div><small>© <span id="current-year"></span> Geja Labs · <span data-i18n="notOfficial">Não é um produto oficial do Redmine.</span></small></div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

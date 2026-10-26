@@ -1,5 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { assertRedmineHostPermission, isInsecureRedmineUrl, normalizeRedmineUrl, redmineOriginPattern } from '@/services/permissions/host';
+import {
+  assertRedmineHostPermission,
+  isInsecureRedmineUrl,
+  normalizeRedmineUrl,
+  redmineIssueUrl,
+  redmineIssueIdFromUrl,
+  redmineOriginPattern,
+} from '@/services/permissions/host';
 
 describe('permissões de host Redmine', () => {
   afterEach(() => vi.unstubAllGlobals());
@@ -7,7 +14,9 @@ describe('permissões de host Redmine', () => {
   it('preserva porta e subdiretório, mas solicita permissão somente para a origem', () => {
     const url = 'https://redmine.example:8443/redmine/';
 
-    expect(normalizeRedmineUrl(url)).toBe('https://redmine.example:8443/redmine');
+    expect(normalizeRedmineUrl(url)).toBe(
+      'https://redmine.example:8443/redmine',
+    );
     expect(redmineOriginPattern(url)).toBe('https://redmine.example:8443/*');
   });
 
@@ -16,17 +25,46 @@ describe('permissões de host Redmine', () => {
     expect(isInsecureRedmineUrl('https://redmine.example/redmine')).toBe(false);
   });
 
+  it('monta links de chamados usando o Redmine configurado', () => {
+    expect(redmineIssueUrl('https://redmine.example:8443/redmine', 99051)).toBe(
+      'https://redmine.example:8443/redmine/issues/99051',
+    );
+  });
+
+  it('identifica chamados somente no host e subdiretório configurados', () => {
+    expect(
+      redmineIssueIdFromUrl(
+        'https://redmine.example:8443/redmine',
+        'https://redmine.example:8443/redmine/issues/99051',
+      ),
+    ).toBe(99051);
+    expect(
+      redmineIssueIdFromUrl(
+        'https://redmine.example:8443/redmine',
+        'https://outro.example/redmine/issues/99051',
+      ),
+    ).toBeUndefined();
+  });
+
   it('não permite chamadas quando a origem foi recusada ou revogada', async () => {
     const contains = vi.fn().mockResolvedValue(false);
     vi.stubGlobal('chrome', { permissions: { contains } });
 
-    await expect(assertRedmineHostPermission('https://redmine.example/redmine')).rejects.toThrow('permissão');
-    expect(contains).toHaveBeenCalledWith({ origins: ['https://redmine.example/*'] });
+    await expect(
+      assertRedmineHostPermission('https://redmine.example/redmine'),
+    ).rejects.toThrow('permissão');
+    expect(contains).toHaveBeenCalledWith({
+      origins: ['https://redmine.example/*'],
+    });
   });
 
   it('permite a origem quando o Chrome confirma a concessão', async () => {
-    vi.stubGlobal('chrome', { permissions: { contains: vi.fn().mockResolvedValue(true) } });
+    vi.stubGlobal('chrome', {
+      permissions: { contains: vi.fn().mockResolvedValue(true) },
+    });
 
-    await expect(assertRedmineHostPermission('https://redmine.example:8443/redmine')).resolves.toBeUndefined();
+    await expect(
+      assertRedmineHostPermission('https://redmine.example:8443/redmine'),
+    ).resolves.toBeUndefined();
   });
 });

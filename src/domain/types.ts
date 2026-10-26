@@ -21,6 +21,8 @@ export interface TimeSession {
   startedAt: string;
   endedAt: string | null;
   durationSeconds: number;
+  draftHours?: number | null;
+  ownerTabId?: number;
   status: SessionStatus;
   description: string;
   activityId: number | null;
@@ -43,6 +45,7 @@ export interface StartSessionInput {
   projectId: number;
   userId: number;
   now: string;
+  ownerTabId?: number;
   description?: string;
   spentOn?: string;
 }

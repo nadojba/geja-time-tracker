@@ -3,9 +3,17 @@ export { RedmineApiError } from './errors';
 
 export interface RedmineUser { id: number; firstname: string; lastname: string; login: string; }
 export interface RedmineProject { id: number; name: string; identifier: string; }
-export interface RedmineIssue { id: number; subject: string; project: { id: number; name: string }; tracker?: { id: number; name: string }; status?: { id: number; name: string }; priority?: { id: number; name: string }; done_ratio?: number; fixed_version?: { id: number; name: string }; }
+export interface RedmineIssue { id: number; subject: string; description?: string; project: { id: number; name: string }; tracker?: { id: number; name: string }; status?: { id: number; name: string }; priority?: { id: number; name: string }; done_ratio?: number; fixed_version?: { id: number; name: string }; }
 export interface RedmineActivity { id: number; name: string; }
-export interface RedmineTimeEntry { id: number; issue?: { id: number }; hours: number; spent_on: string; comments: string; activity?: RedmineActivity; }
+export interface RedmineTimeEntry { id: number; issue?: { id: number }; project?: { id: number; name: string }; hours: number; spent_on: string; comments: string; activity?: RedmineActivity; }
+export interface CreateIssuePayload {
+  project_id: number;
+  subject: string;
+  description?: string;
+  tracker_id?: number;
+  status_id?: number;
+  priority_id?: number;
+}
 
 type Fetcher = typeof fetch;
 const normalizeUrl = (url: string) => url.trim().replace(/\/+$/, '');
@@ -44,8 +52,9 @@ export class RedmineClient {
   projects() { return this.paginate<RedmineProject>('/projects.json', 'projects'); }
   issues(params: Record<string, string | number> = { assigned_to_id: 'me' }) { const query = new URLSearchParams({ limit: '100', ...Object.fromEntries(Object.entries(params).map(([key, value]) => [key, String(value)])) }); return this.paginate<RedmineIssue>(`/issues.json?${query}`, 'issues'); }
   activities() { return this.cached('activities', () => this.request<{ time_entry_activities: RedmineActivity[] }>('/enumerations/time_entry_activities.json')); }
-  timeEntries(params: Record<string, string | number> = {}) { const query = new URLSearchParams(Object.fromEntries(Object.entries(params).map(([key, value]) => [key, String(value)]))); return this.request<{ time_entries: RedmineTimeEntry[] }>(`/time_entries.json?${query}`); }
+  timeEntries(params: Record<string, string | number> = {}) { const query = new URLSearchParams(Object.fromEntries(Object.entries(params).map(([key, value]) => [key, String(value)]))); return this.paginate<RedmineTimeEntry>(`/time_entries.json?${query}`, 'time_entries'); }
   createTimeEntry(payload: { issue_id: number; hours: number; activity_id: number; comments: string; spent_on: string }) { return this.request<{ time_entry: RedmineTimeEntry }>('/time_entries.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ time_entry: payload }) }); }
+  createIssue(payload: CreateIssuePayload) { return this.request<{ issue: RedmineIssue }>('/issues.json', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ issue: payload }) }); }
   issue(id: number) { return this.request<{ issue: RedmineIssue }>(`/issues/${id}.json`); }
 
   private async paginate<T>(path: string, key: string): Promise<T[]> {

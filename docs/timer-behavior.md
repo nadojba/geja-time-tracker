@@ -4,3 +4,8 @@
 
 Cada sessão guarda conta, chamado, projeto, usuário, timestamps, duração, segmentos e estado de lançamento. O relógio visual recalcula o período ativo a partir do timestamp; não depende de um intervalo persistente. Após reinício do worker, o estado é hidratado do armazenamento e nenhum período encerrado é mesclado automaticamente.
 
+No widget injetado nas páginas de chamados, um duplo clique sobre a duração da
+sessão ativa abre a edição inline em horas, minutos e segundos. A confirmação
+persiste a duração no service worker; sessões em execução continuam contando a
+partir do novo valor e sessões pausadas permanecem pausadas.
+

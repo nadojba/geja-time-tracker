@@ -4,7 +4,11 @@ export interface Preferences {
   timeFormat: '12h' | '24h';
   durationFormat: 'hh:mm:ss';
   autoPause: boolean;
-  roundToInterval: { enabled: boolean; minutes: number; mode: 'down' | 'nearest' | 'up' };
+  roundToInterval: {
+    enabled: boolean;
+    minutes: number;
+    mode: 'down' | 'nearest' | 'up';
+  };
   persistentComments: boolean;
   showCurrentIssueTimer: boolean;
   confirmBeforeSwitchingIssues: boolean;
@@ -23,33 +27,95 @@ export interface Preferences {
   showTooltips: boolean;
   accentColor: 'blue' | 'indigo' | 'green' | 'violet' | 'orange';
   widgetStyle: 'compact' | 'minimal' | 'prominent';
+  widgetTimerSize: 'small' | 'medium' | 'large';
+  showFloatingWidget: boolean;
+  pauseOnTabClose: boolean;
+  timerWindowBehavior: 'manual' | 'on-start';
+  closeTimerWindowWhenInactive: boolean;
+  notificationsEnabled: boolean;
+  notifyOnPause: boolean;
+  notifyOnStop: boolean;
+  notifyOnReconciliation: boolean;
+  notifyLongRunningMinutes: number;
 }
 
 export const defaultPreferences: Preferences = {
-  language: 'pt-BR', theme: 'system', timeFormat: '24h', durationFormat: 'hh:mm:ss', autoPause: true,
-  roundToInterval: { enabled: true, minutes: 15, mode: 'nearest' }, persistentComments: true,
-  showCurrentIssueTimer: true, confirmBeforeSwitchingIssues: true, stopTimerBehavior: 'save',
-  displaySearchAlways: true, stickyScroll: true, groupIssuesByTargetVersion: false, sortIssuesByPriority: true,
-  showIssuePriority: true, showIssueDoneRatio: true, showIssueStatus: true, showTimerSessions: true,
-  pinTrackedIssues: true, pinActiveTabIssue: true, fullscreenSidebar: false, showTooltips: true,
-  accentColor: 'blue', widgetStyle: 'compact',
+  language: 'pt-BR',
+  theme: 'system',
+  timeFormat: '24h',
+  durationFormat: 'hh:mm:ss',
+  autoPause: true,
+  roundToInterval: { enabled: true, minutes: 15, mode: 'nearest' },
+  persistentComments: true,
+  showCurrentIssueTimer: true,
+  confirmBeforeSwitchingIssues: true,
+  stopTimerBehavior: 'save',
+  displaySearchAlways: true,
+  stickyScroll: true,
+  groupIssuesByTargetVersion: false,
+  sortIssuesByPriority: true,
+  showIssuePriority: true,
+  showIssueDoneRatio: true,
+  showIssueStatus: true,
+  showTimerSessions: true,
+  pinTrackedIssues: true,
+  pinActiveTabIssue: true,
+  fullscreenSidebar: false,
+  showTooltips: true,
+  accentColor: 'blue',
+  widgetStyle: 'compact',
+  widgetTimerSize: 'medium',
+  showFloatingWidget: false,
+  pauseOnTabClose: false,
+  timerWindowBehavior: 'manual',
+  closeTimerWindowWhenInactive: false,
+  notificationsEnabled: true,
+  notifyOnPause: true,
+  notifyOnStop: true,
+  notifyOnReconciliation: true,
+  notifyLongRunningMinutes: 240,
 };
 
-export function roundDurationSeconds(seconds: number, config: Preferences['roundToInterval']): number {
+export const shouldConfirmIssueSwitch = (
+  activeIssueId: number | undefined,
+  nextIssueId: number,
+  preferences: Pick<Preferences, 'confirmBeforeSwitchingIssues'>,
+): boolean =>
+  Boolean(
+    activeIssueId &&
+    activeIssueId !== nextIssueId &&
+    preferences.confirmBeforeSwitchingIssues,
+  );
+
+export function roundDurationSeconds(
+  seconds: number,
+  config: Preferences['roundToInterval'],
+): number {
   if (!config.enabled || config.minutes <= 0) return seconds;
 
   const intervalSeconds = config.minutes * 60;
   const units = seconds / intervalSeconds;
-  const roundedUnits = config.mode === 'down' ? Math.floor(units) : config.mode === 'up' ? Math.ceil(units) : Math.round(units);
+  const roundedUnits =
+    config.mode === 'down'
+      ? Math.floor(units)
+      : config.mode === 'up'
+        ? Math.ceil(units)
+        : Math.round(units);
   return roundedUnits * intervalSeconds;
 }
 
-export function getSuggestedDurationSeconds(seconds: number, config: Preferences['roundToInterval']): number {
+export function getSuggestedDurationSeconds(
+  seconds: number,
+  config: Preferences['roundToInterval'],
+): number {
   const rounded = roundDurationSeconds(seconds, config);
   return seconds > 0 && rounded <= 0 ? seconds : rounded;
 }
 
-export function getSuggestedEntryHours(seconds: number, config: Preferences['roundToInterval']): number {
+export function getSuggestedEntryHours(
+  seconds: number,
+  config: Preferences['roundToInterval'],
+): number {
   const suggestedSeconds = getSuggestedDurationSeconds(seconds, config);
   if (suggestedSeconds <= 0) return 0;
   return Math.max(0.01, Math.round((suggestedSeconds / 3600) * 100) / 100);
